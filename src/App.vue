@@ -1,23 +1,34 @@
-<template>
+<!--
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+    #app
+      img(src="./assets/logo.png")
+      h1 {{ }}
   </div>
+-->
+
+<template lang="pug">
+  #app
+    RegisterSample
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import RegisterSample from './components/RegistroSample'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    RegisterSample
   }
 }
 </script>
 
 <style lang="scss">
-@import './assets/scss/main.scss';
+@import "./assets/scss/main.scss";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
