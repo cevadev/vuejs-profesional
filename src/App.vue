@@ -11,18 +11,20 @@
 
 <template lang="pug">
   #app
-    RegisterSample
+    MovieView
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import RegisterSample from './components/RegistroSample'
+import MovieView from './components/MovieView'
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    RegisterSample
+    RegisterSample,
+    MovieView
   }
 }
 </script>
