@@ -12,7 +12,7 @@
 <template lang="pug">
   #app
     section.section
-    nav.nav.has-shadow
+    nav.navbar.has-shadow
       .container
         .field.has-addons
           .control
@@ -22,19 +22,32 @@
               v-model="searchQuery"
             )
           .control
-            a.button.is-info.is-large(v-on:click="search") Buscar
+            a.button.is-info.is-large(v-on:click.prevent="search") Buscar
           .control
             a.button.is-danger.is-large &times;
         p.help.is-info.has-text-right
           small {{ searchMessage }}
     .container.results
       .columns
-        .column(v-for="t in tracks") {{ t.name }} - {{ t.artist }}
+        .column(v-for="(t, index) in tracks", v-bind:key="index") {{ t.name }} - {{ t.artist }}
 
 </template>
 
 <script>
-
+const tracks = [
+  {
+    name: 'Muchacha',
+    artist: 'Luis Alberto Spinetta'
+  },
+  {
+    name: 'Acá en el baile',
+    artist: 'Pepo'
+  },
+  {
+    name: 'I was made for loving you',
+    artist: 'Kiss'
+  }
+]
 export default {
   name: 'App',
   components: {
@@ -42,29 +55,26 @@ export default {
   },
   data () {
     return {
-
+      searchQuery: '',
+      tracks: []
+    }
+  },
+  methods: {
+    search () {
+      this.tracks = tracks
     }
   },
   computed: {
-
-  },
-  watch: {
-
-  },
-  methods: {
-
+    searchMessage () {
+      return `${this.tracks.length} songs found`
+    }
   }
 }
 </script>
 
 <style lang="scss">
 @import "./assets/scss/main.scss";
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.results {
+  margin-top: 50px;
 }
 </style>
