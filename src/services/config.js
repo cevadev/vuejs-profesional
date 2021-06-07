@@ -1,8 +1,8 @@
-//storage de archivos de configuracion
-//objeto configService
+// storage de archivos de configuracion
+// objeto configService
 const configService = {
-  apiUrl: "https://platzi-music-api.herokuapp.com/"
-};
+  apiUrl: 'https://platzi-music-api.herokuapp.com/'
+}
 
-//exportamos el objeto para ser utilizado
-export default configService;
+// exportamos el objeto para ser utilizado
+export default configService
