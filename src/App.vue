@@ -11,6 +11,7 @@
 
 <template lang="pug">
   #app
+    pm-header
     section.section
     nav.navbar.has-shadow
       .container
@@ -32,15 +33,18 @@
       .columns
         .column(v-for="(t, index) in tracks", v-bind:key="index")
           | {{ t.name }} - {{ t.artists[0].name }}
+    pm-footer
 </template>
 
 <script>
-// import SearchSongs from './components/SearchSongs.vue'
-// import TaskManager from './components/TaskManager.vue'
-
+// import componente local
+import PmFooter from './components/layout/Footer.vue'
+import PmHeader from './components/layout/Header.vue'
 import trackService from './services/track'
+
 export default {
   name: 'App',
+  // funcion data que retorna un objeto
   data () {
     return {
       searchQuery: '',
@@ -48,6 +52,8 @@ export default {
     }
   },
   components: {
+    PmHeader,
+    PmFooter
     // SearchSongs,
     // TaskManager
   },
@@ -59,11 +65,10 @@ export default {
       }
 
       // search retorna una promesa, usamos la chain promise y con then manejamos la respuesta
-      trackService.search(this.searchQuery)
-        .then(res => {
-          // res (response) -> tracks (object) -> items(array de elementos)
-          this.tracks = res.tracks.items
-        })
+      trackService.search(this.searchQuery).then(res => {
+        // res (response) -> tracks (object) -> items(array de elementos)
+        this.tracks = res.tracks.items
+      })
     }
   },
   computed: {
