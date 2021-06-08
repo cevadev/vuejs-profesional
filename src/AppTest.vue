@@ -2,15 +2,14 @@
   #app
     h1 Components Lesson
     child
+    reactivity
 </template>
 
 <script>
 export default {
   name: 'app',
   data () {
-    return {
-
-    }
+    return {}
   }
 }
 </script>
