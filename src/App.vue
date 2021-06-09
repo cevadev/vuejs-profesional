@@ -12,6 +12,9 @@
 <template lang="html">
   <main>
     <pm-header />
+    <pm-notification v-show="showNotification">
+      <p slot="body">No se encontraron resultados :(</p>
+    </pm-notification>
     <pm-loader v-show="isLoading" />
     <section class="section" v-show="!isLoading">
       <nav class="nav">
@@ -57,61 +60,80 @@
 
 <script>
 // import componente local
-import PmFooter from './components/layout/Footer.vue'
-import PmHeader from './components/layout/Header.vue'
-import trackService from './services/track'
-import PmTrack from './components/Track.vue'
-import PmLoader from './components/shared/Loader.vue'
+import PmFooter from "./components/layout/Footer.vue";
+import PmHeader from "./components/layout/Header.vue";
+import trackService from "./services/track";
+import PmTrack from "./components/Track.vue";
+import PmLoader from "./components/shared/Loader.vue";
+import PmNotification from "./components/shared/Notification.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   // funcion data que retorna un objeto
-  data () {
+  data() {
     return {
-      searchQuery: '',
+      searchQuery: "",
       tracks: [],
       // controlamos si se trae info de la api
       isLoading: false,
       // almacena el id del Track seleccinado
-      selectedTrack: ''
-    }
+      selectedTrack: "",
+      // controlamos la visualizacion o no de la notificacion
+      showNotification: false
+    };
   },
   components: {
     PmHeader,
     PmFooter,
     PmTrack,
-    PmLoader
+    PmLoader,
+    PmNotification
     // SearchSongs,
     // TaskManager
   },
   methods: {
-    search () {
+    search() {
       // validamos que no este vacia la caja de busqueda
       if (!this.searchQuery) {
-        return
+        return;
       }
 
       // encendemos el flag cuando se inicia una busqueda
-      this.isLoading = true
+      this.isLoading = true;
 
       // search retorna una promesa, usamos la chain promise y con then manejamos la respuesta
       trackService.search(this.searchQuery).then(res => {
+        // si no hay resultados (busquedad igual 0) retorna true, y se muestra notificacion de lo contrario se oculta
+        this.showNotification = res.tracks.total === 0 ? true : false;
         // res (response) -> tracks (object) -> items(array de elementos)
-        this.tracks = res.tracks.items
+        this.tracks = res.tracks.items;
         // apagamos el flag cuando la busqueda termino
-        this.isLoading = false
-      })
+        this.isLoading = false;
+      });
     },
-    setSelectedTrack (id) {
-      this.selectedTrack = id
+    setSelectedTrack(id) {
+      this.selectedTrack = id;
     }
   },
   computed: {
-    searchMessage () {
-      return `${this.tracks.length} songs found`
+    searchMessage() {
+      return `${this.tracks.length} songs found`;
+    }
+  },
+  watch: {
+    //los watchers deben llamarse igual que la propiedad que quiero observar en este caso showNotification
+    //ocultamos el mensaje de notificacion 3 segundo despues de ser mostrado
+    showNotification() {
+      //los watcjer no retornan valores
+      if (this.showNotification) {
+        //indicamos la que funcion se ejecute luego de 3 segundo
+        setTimeout(() => {
+          this.showNotification = false;
+        }, 3000);
+      }
     }
   }
-}
+};
 </script>
 
 <style lang="scss">

@@ -1,18 +1,19 @@
-<template lang="pug">
-  #app
-    h1 Components Lesson
-    lifecycle
-    //child
-    //reactivity
+<template lang="html">
+  <div>
+    <slots-sample>
+      <h1 slot="title">Titulo: Clase Slots</h1>
+      <p slot="body">Demostracion del uso de Slot</p>
+    </slots-sample>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'app',
-  data () {
-    return {}
+  name: "app",
+  data() {
+    return {};
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
