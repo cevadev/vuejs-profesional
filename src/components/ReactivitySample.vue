@@ -18,16 +18,16 @@
 
 <script>
 export default {
-  name: "ReactivitySample",
-  data() {
+  name: 'ReactivitySample',
+  data () {
     return {
       person: {
-        name: "Carlos"
+        name: 'Carlos'
       }
-    };
+    }
   },
   methods: {
-    addProp() {
+    addProp () {
       // si damos click en el boton la propiedad lastname se crea en el objeto pero el cambio no se ve reflejado por vue
       // para mostrar el cambio de la propiedad lastname adicionada al objeto person debemos usar la funcion $set()
       // this.person.lastname = 'Villanueva'
@@ -37,12 +37,12 @@ export default {
 
       // 2da forma. al objeto person le agregamos propiedades y ese objeto modificado lo asignamos nuevamente a person
       this.person = Object.assign({}, this.person, {
-        lastname: "Villanueva",
-        country: "Peru"
-      });
+        lastname: 'Villanueva',
+        country: 'Peru'
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped></style>

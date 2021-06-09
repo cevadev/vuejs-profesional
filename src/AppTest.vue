@@ -1,8 +1,9 @@
 <template lang="pug">
   #app
     h1 Components Lesson
-    child
-    reactivity
+    lifecycle
+    //child
+    //reactivity
 </template>
 
 <script>
