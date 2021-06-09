@@ -11,11 +11,11 @@
 
 <script>
 export default {
-  name: "SlotsSample",
-  data() {
-    return {};
+  name: 'SlotsSample',
+  data () {
+    return {}
   }
-};
+}
 </script>
 
 <style lang="scss" scoped></style>

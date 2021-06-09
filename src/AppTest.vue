@@ -9,11 +9,11 @@
 
 <script>
 export default {
-  name: "app",
-  data() {
-    return {};
+  name: 'app',
+  data () {
+    return {}
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

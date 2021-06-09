@@ -4,7 +4,7 @@
       <header class="nav">
         <div class="container">
           <div class="nav-left">
-            <div class="nav-item">
+            <div class="nav-rigth nav-menu">
               <strong>Platzi Music</strong>
             </div>
           </div>
@@ -25,6 +25,7 @@
       <div class="container has-text-centered">
         <h1 class="title">Platzi Music</h1>
         <h2 class="subtitle">Canciones que están Vue-nisimas!</h2>
+        <pm-player></pm-player>
         <!--<pm-player></pm-player>-->
       </div>
     </div>
@@ -32,7 +33,12 @@
 </template>
 
 <script>
-export default {}
+import PmPlayer from '../Player.vue'
+export default {
+  components: {
+    PmPlayer
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

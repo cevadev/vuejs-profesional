@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import LocalComponent from "./LocalComponent.vue";
+import LocalComponent from './LocalComponent.vue'
 export default {
-  name: "ChildComponent",
+  name: 'ChildComponent',
   components: {
     LocalComponent
   }
-};
+}
 </script>
