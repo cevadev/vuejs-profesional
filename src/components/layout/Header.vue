@@ -14,8 +14,10 @@
                         <a class="nav-item" @click="selectLang('es')">ES</a>-->
 
             <!-- Con la función $t() podemos imprimir el idioma deseasdo con base en la key pasada -->
-            <!--<router-link class="nav-item" :to="{ name: 'search' }">{{ $t("search") }}</router-link>
-                        <router-link class="nav-item" to="about">{{ $t("about") }}</router-link>-->
+            <router-link class="nav-item" v-bind:to="{ name: 'search' }"
+              >Buscar</router-link
+            >
+            <router-link class="nav-item" to="about">About</router-link>
           </div>
         </div>
       </header>
@@ -33,12 +35,12 @@
 </template>
 
 <script>
-import PmPlayer from '../Player.vue'
+import PmPlayer from "../Player.vue";
 export default {
   components: {
     PmPlayer
   }
-}
+};
 </script>
 
 <style lang="scss" scoped></style>
