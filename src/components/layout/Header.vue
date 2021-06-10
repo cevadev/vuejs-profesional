@@ -35,12 +35,12 @@
 </template>
 
 <script>
-import PmPlayer from "../Player.vue";
+import PmPlayer from '../Player.vue'
 export default {
   components: {
     PmPlayer
   }
-};
+}
 </script>
 
 <style lang="scss" scoped></style>

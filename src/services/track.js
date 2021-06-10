@@ -1,17 +1,17 @@
 /**
  * Servicio que nos permite interactuar con platziMusicService y recuperar datos
  */
-import platziMusicService from './platzi-music'
+import platziMusicService from "./platzi-music";
 
-const trackService = {}
+const trackService = {};
 
 /**
  * search()-> interactua con platziMusicService y obtiene info de ella
  * q-> query que recibe la funcion
  */
-trackService.search = function (q) {
+trackService.search = function(q) {
   // vamos a buscar canciones (tracks)
-  const type = 'track'
+  const type = "track";
 
   // platziMusicService es una instancia de trae por lo que usamosel metodo get que retorna una promise
   // llamamos al endpoint search de la api de Platzi-Music
@@ -19,16 +19,21 @@ trackService.search = function (q) {
   // de la funcion
   return (
     platziMusicService
-      .get('/search', {
+      .get("/search", {
         // pasamos los params que seran parte del http request
         params: {
           q: q,
           type: type
         }
       })
-      // en caso de respesta satisfactoria devolvemos datos de la respuesta con una anonima
+      // en caso de respesta satisfactoria devolvemos datos de la respuesta
       .then(res => res.data)
-  )
-}
+  );
+};
 
-export default trackService
+// obtenemos un track apartir del id track
+trackService.getById = function(id) {
+  return platziMusicService.get(`/tracks/${id}`).then(res => res.data);
+};
+
+export default trackService;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card">
+    <div class="card" v-if="track && track.album">
       <div class="card-image">
         <figure class="image is-1by1">
           <img v-bind:src="track.album.images[0].url" />
@@ -46,7 +46,7 @@
 
 <script>
 export default {
-  name: 'Track',
+  name: "Track",
   props: {
     // definimos el objeto track y valores adicionales
     track: {
@@ -55,21 +55,21 @@ export default {
     }
   },
   methods: {
-    selectTrack () {
+    selectTrack() {
       // emitimos un evento llamado select para ser escuchado por el componente padre y le enviamos el id del track
-      this.$emit('select', this.track.id)
+      this.$emit("select", this.track.id);
 
       // objeto bus es un plugin creado por nosotros. bus es una instancia de Vue por lo que podemo usar
       // el evento emit
       // cada vez que se hace click en un cambio enviamos la cancion al componente play para reproducirla
-      this.$bus.$emit('set-track', this.track)
+      this.$bus.$emit("set-track", this.track);
     },
-    gotToTrack () {
-      if (!this.track.src) {
-      }
+    goToTrack(id) {
+      //navegamos a la ruta del TrackDetails
+      this.$router.push({ name: "track", params: { id } });
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped></style>
