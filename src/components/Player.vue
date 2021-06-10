@@ -2,7 +2,8 @@
 <template lang="html">
   <div class="content">
     <p class="is-128x128">
-      <img :src="track.album.images[0].url" />
+      <!--que la imagen se muestre cuando el objeto track y track.album posee una cancion-->
+      <img v-if="track && track.album" :src="track.album.images[0].url" />
     </p>
 
     <p>
