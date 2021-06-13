@@ -6,13 +6,21 @@ import VueRouter from "vue-router";
 // import LifeCycleSample from './components/LifeCycleSample.vue'
 // import SlotsSample from "./components/SlotsSample.vue";
 import App from "./App.vue";
-
 import EventBus from "./plugins/event-bus";
 // import array of routes file
 import routes from "./routes";
 
+// import filters
+import msToMm from "./filters/ms-to-mm";
+
+// import directivas
+import blur from "./directives/blur";
+
 Vue.use(EventBus);
 Vue.use(VueRouter);
+Vue.use(msToMm);
+Vue.use(blur);
+
 // importacion de componente global
 // Vue.component("child", ChildComponent);
 // Vue.component('reactivity', ReactivitySample)

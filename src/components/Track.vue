@@ -26,7 +26,7 @@
         </div>
 
         <div class="content">
-          <small>{{ track.duration_ms || ms - to - mm }}</small>
+          <small>{{ track.duration_ms | convertMillisecondsToMinutes }}</small>
           <nav class="level">
             <div class="level-left">
               <button class="level-item button is-primary">
@@ -45,6 +45,9 @@
 </template>
 
 <script>
+// importamos mixin
+import trackMixin from "../mixins/track";
+
 export default {
   name: "Track",
   props: {
@@ -54,18 +57,31 @@ export default {
       required: true
     }
   },
+  // injectamos los mixins
+  mixins: [trackMixin],
   methods: {
-    selectTrack() {
-      // emitimos un evento llamado select para ser escuchado por el componente padre y le enviamos el id del track
-      this.$emit("select", this.track.id);
+    /** METDO selectTrack LLEVADO AL MIXIN: TRACK */
+    //selectTrack() {
+    // validamos que no se permita seleccionar un track si no hay un preview de la cancion
+    /* if (!this.track.preview_url) {
+        return;
+      } */
 
-      // objeto bus es un plugin creado por nosotros. bus es una instancia de Vue por lo que podemo usar
-      // el evento emit
-      // cada vez que se hace click en un cambio enviamos la cancion al componente play para reproducirla
-      this.$bus.$emit("set-track", this.track);
-    },
+    // emitimos un evento llamado select para ser escuchado por el componente padre y le enviamos el id del track
+    // this.$emit("select", this.track.id);
+
+    // objeto bus es un plugin creado por nosotros. bus es una instancia de Vue por lo que podemo usar
+    // el evento emit
+    // cada vez que se hace click en un cambio enviamos la cancion al componente play para reproducirla
+    // this.$bus.$emit("set-track", this.track);
+    // },
     goToTrack(id) {
-      //navegamos a la ruta del TrackDetails
+      // validamos que no se permita seleccionar un track si no hay un preview de la cancion
+      /* if (!this.track.preview_url) {
+        return;
+      } */
+
+      // navegamos a la ruta del TrackDetails
       this.$router.push({ name: "track", params: { id } });
     }
   }

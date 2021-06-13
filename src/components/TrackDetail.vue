@@ -1,21 +1,22 @@
 <template>
   <div class="container">
     <div class="columns">
-      <div class="column is- has-text-centered">
-        <pm-track v-bind:track="track"></pm-track>
+      <div class="column is-3 has-text-centered">
+        <!-- <pm-track v-bind:track="track"></pm-track> -->
         <figure class="media-left">
           <p class="image">
-            <img :src="track.images" />
+            <img :src="track.album.images[0].url" />
           </p>
           <p class="button-bar">
             <a class="button is-primary is-large">
-              <!-- <span class="icon" @click="selectTrack">Play!</span> -->
+              <!--aplicando mixin selectTrack que no existento de de Track Detail pero si existe en el mixin-->
+              <span class="icon" v-on:click="selectTrack">Play!</span>
             </a>
           </p>
         </figure>
       </div>
 
-      <!-- <div class="column is-8">
+      <div class="column is-8">
         <div class="panel">
           <div class="panel-heading">
             <h1 class="title">{{ trackTitle }}</h1>
@@ -24,11 +25,11 @@
             <article class="media">
               <div class="media-content">
                 <div class="content">
-
-                  <ul v-for="(v, k) in track" :key="k">
+                  <!--usamos v-for para recorrer cada una de las propiedades de un objeto-->
+                  <ul v-for="(value, key) in track" :key="key">
                     <li>
-                      <strong>{{ k }}:&nbsp;</strong>
-                      <span>{{ v }}</span>
+                      <strong>{{ key }}:&nbsp;</strong>
+                      <span>{{ value }}</span>
                     </li>
                   </ul>
                 </div>
@@ -42,7 +43,7 @@
             </article>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -50,12 +51,14 @@
 <script>
 // import trackservice para obtener info de un trac
 import trackService from "../services/track";
-import PmTrack from "./Track.vue";
+//mixins
+import trackMixin from "../mixins/track";
+// import PmTrack from "./Track.vue";
 export default {
   name: "TrackDetail",
-  components: {
+  /* components: {
     PmTrack
-  },
+  }, */
   data() {
     return {
       track: {}
@@ -65,12 +68,13 @@ export default {
   created() {
     // dentro de this.$route podemos acceder a los params que viajan en la url
     const id = this.$route.params.id;
-    if (!this.track || !this.track.id || this.track.id != id) {
+    if (!this.track || !this.track.id || this.track.id !== id) {
       trackService.getById(id).then(res => {
         this.track = res;
       });
     }
-  }
+  },
+  mixins: [trackMixin]
 };
 </script>
 
