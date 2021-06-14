@@ -1,9 +1,13 @@
 <template lang="html">
   <main>
-    <pm-notification v-show="showNotification">
-      <p slot="body">No se encontraron resultados :(</p>
-    </pm-notification>
-    <pm-loader v-show="isLoading" />
+    <transition name="move">
+      <pm-notification v-show="showNotification">
+        <p slot="body">No se encontraron resultados :(</p>
+      </pm-notification>
+    </transition>
+    <transition name="move">
+      <pm-loader v-show="isLoading" />
+    </transition>
     <section class="section" v-show="!isLoading">
       <nav class="nav">
         <div class="container">

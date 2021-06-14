@@ -1,1 +1,29 @@
 @import "../../../node_modules/bulma/bulma.sass";
+
+/* El por qué del nombre de estas clases se pueden ver en la documentación de vue de transiciones de clases, 
+    practicamente son 6, 3 para enter y 3 para leave, enter es cuando antes de empezar, 
+    enter-active es cuando esta la transicion y enter-to es cuando acabo, enter también puede ser leave, 
+    lo primero que se pone es el nombre de la transición y se separan por guiones */
+
+.move-enter-active,
+.move-leave-active {
+  transform: translateX(0);
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+}
+
+.move-enter,
+.move-leave-to {
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+}
