@@ -50,32 +50,32 @@
 
 <script>
 // import trackservice para obtener info de un trac
-import trackService from "../services/track";
-//mixins
-import trackMixin from "../mixins/track";
+import trackService from '../services/track'
+// mixins
+import trackMixin from '../mixins/track'
 // import PmTrack from "./Track.vue";
 export default {
-  name: "TrackDetail",
+  name: 'TrackDetail',
   /* components: {
     PmTrack
   }, */
-  data() {
+  data () {
     return {
       track: {}
-    };
+    }
   },
   // obtenemos el valor de la url y leemos el param id
-  created() {
+  created () {
     // dentro de this.$route podemos acceder a los params que viajan en la url
-    const id = this.$route.params.id;
+    const id = this.$route.params.id
     if (!this.track || !this.track.id || this.track.id !== id) {
       trackService.getById(id).then(res => {
-        this.track = res;
-      });
+        this.track = res
+      })
     }
   },
   mixins: [trackMixin]
-};
+}
 </script>
 
 <style lang="scss" scoped>
