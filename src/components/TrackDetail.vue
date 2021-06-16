@@ -19,7 +19,7 @@
       <div class="column is-8">
         <div class="panel">
           <div class="panel-heading">
-            <h1 class="title">{{ track.name }}</h1>
+            <h1 class="title">{{ trackTitle }}</h1>
           </div>
           <div class="panel-block">
             <article class="media">
@@ -50,15 +50,15 @@
 
 <script>
 // importamos el mapState ya que nos provee de la cancion
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from 'vuex'
 
 // import trackservice para obtener info de un trac
 // import trackService from "../services/track";
 // mixins
-import trackMixin from "../mixins/track";
+import trackMixin from '../mixins/track'
 // import PmTrack from "./Track.vue";
 export default {
-  name: "TrackDetail",
+  name: 'TrackDetail',
 
   /* components: {
     PmTrack
@@ -71,13 +71,14 @@ export default {
   }, */
   computed: {
     // indicamos el state que queremos traer (track)
-    ...mapState(["track"])
+    ...mapState(['track']),
+    ...mapGetters(['trackTitle'])
   },
 
   // obtenemos el valor de la url y leemos el param id
-  created() {
+  created () {
     // dentro de this.$route podemos acceder a los params que viajan en la url
-    const id = this.$route.params.id;
+    const id = this.$route.params.id
 
     /** Preguntamos si la cancion existe ya que:
      *  Puede que aun no exista porque puede aun no existir porque no se ha cargado o puede ser que no exista track
@@ -89,8 +90,8 @@ export default {
     if (!this.track || !this.track.id || this.track.id !== id) {
       // traemos el metodo mapeado en el mapActions
       this.getTrackById({ id }).then(() => {
-        console.info("Track loaded");
-      });
+        console.info('Track loaded')
+      })
     }
 
     /* if (!this.track || !this.track.id || this.track.id !== id) {
@@ -100,15 +101,15 @@ export default {
     } */
   },
 
-  actions: {
+  methods: {
     ...mapActions([
       // selecionamos la accion
-      "getTrackById"
+      'getTrackById'
     ])
   },
 
   mixins: [trackMixin]
-};
+}
 </script>
 
 <style lang="scss" scoped>

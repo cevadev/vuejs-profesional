@@ -19,6 +19,11 @@ import blur from './directives/blur'
 // importamos el store de Vuex
 import store from './store'
 
+import i18n from './i18n'
+
+// internacionalizacion
+// import i18n from "./i18n";
+
 Vue.use(EventBus)
 Vue.use(VueRouter)
 Vue.use(msToMm)
@@ -39,8 +44,13 @@ const router = new VueRouter({
 Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
+
   // add VueRouter instance to Vue app instance
   router,
+
+  i18n,
+
   // llamamos al store dentro de nuestra instancia de Vue
+  // i18n
   store
 }).$mount('#app')

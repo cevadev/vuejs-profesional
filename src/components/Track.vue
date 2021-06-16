@@ -34,7 +34,7 @@
               </button>
 
               <button class="level-item button is-warning">
-                <span v-on:click="goToTrack(track.id)">Go to track!</span>
+                <span v-on:click="goToTrack(track)">Go to track!</span>
               </button>
             </div>
           </nav>
@@ -75,14 +75,16 @@ export default {
     // cada vez que se hace click en un cambio enviamos la cancion al componente play para reproducirla
     // this.$bus.$emit("set-track", this.track);
     // },
-    goToTrack (id) {
+    goToTrack (track) {
       // validamos que no se permita seleccionar un track si no hay un preview de la cancion
       /* if (!this.track.preview_url) {
         return;
       } */
+      // hacemos commit al mutation setTrack para almacenar el track en el store sin tener que llamar a la API
+      this.$store.commit('setTrack', track)
 
       // navegamos a la ruta del TrackDetails
-      this.$router.push({ name: 'track', params: { id } })
+      this.$router.push({ name: 'track', params: { id: track.id } })
     }
   }
 }
